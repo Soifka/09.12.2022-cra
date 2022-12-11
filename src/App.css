@@ -1,6 +1,14 @@
-.circle {
+.lamp-off {
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: 2px solid darkred;
+}
+
+.lamp-on {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid darkred;
+  background-color: yellow;
 }
