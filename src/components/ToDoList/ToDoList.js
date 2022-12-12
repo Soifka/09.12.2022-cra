@@ -32,47 +32,62 @@
 import React from "react";
 
 class ToDoList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            taskArray: [
-                {
-                    id: 1,
-                    taskText: 'go to party'
-                },
-                {
-                    id: 2,
-                    taskText: 'call mom'
-                },
-                {
-                    id: 3,
-                    taskText: 'wash the dishes'
-                },
-                {
-                    id: 4,
-                    taskText: 'do to walk'
-                },
-                {
-                    id: 5,
-                    taskText: 'learn React'
-                }
-            ]
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      taskArray: [
+        {
+          id: 1,
+          taskText: "go to party",
+          isComplete: false
+        },
+        {
+          id: 2,
+          taskText: "call mom",
+          isComplete: false
+        },
+        {
+          id: 3,
+          taskText: "wash the dishes",
+          isComplete: false
+        },
+        {
+          id: 4,
+          taskText: "do to walk",
+          isComplete: false
+        },
+        {
+          id: 5,
+          taskText: "learn React",
+          isComplete: false
+        },
+      ],
+    };
+  }
 
-    taskToList() {
-        const {taskArray} = this.state;
+  delTask(e) {
+    //console.dir(e);
 
-        return taskArray.map((task) => <li key={task.id}>{task.taskText}</li>);
-    }
+    const { taskArray } = this.state;
+    const {target: {dataset: {id}}} = e;
+    
+    const newTaskArray = taskArray.filter(task => task.id != id);
+    
+    this.setState({
+        taskArray: newTaskArray
+    })
+  }
 
-    render() {
-        return (
-            <ul>
-                {this.taskToList()}
-            </ul>
-        )
-    }
+  taskToList() {
+    const { taskArray } = this.state;
+
+    return taskArray.map((task) => <li key={task.id}>{task.taskText}   <button data-id={task.id} onClick={(e) => {this.delTask(e)}}>delete</button></li>)
+  }
+
+  render() {
+    return <ul>{this.taskToList()}</ul>;
+  }
 }
 
 export default ToDoList;
+
