@@ -1,13 +1,38 @@
 import React from "react";
 import Aloha from "../Aloha/Aloha";
 
+const usersArray = [
+    {
+        firstName: 'Tony',
+        lastName: 'Stark'
+    },
+    {
+        firstName: 'Bruce',
+        lastName: 'Brenner'
+    },
+    {
+        firstName: 'Thor',
+        lastName: 'Odinson'
+    },
+    {
+        firstName: 'Peter',
+        lastName: 'Parker'
+    },
+    {
+        firstName: 'Natasha',
+        lastName: 'Romanof'
+    }
+]
+
 class AlohaDashboard extends React.Component {
+  userToAloha() {
+    return usersArray.map((user) => <Aloha name={user.firstName} lastName={user.lastName} />)
+  }  
+
   render() {
     return (
       <>
-        <Aloha name="Alex" country="USA" />
-        <Aloha name="Julia" country="Australia" />
-        <Aloha name="Masha" country="Ukraine" />
+        {this.userToAloha()}
       </>
     );
   }

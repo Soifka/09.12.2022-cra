@@ -15,9 +15,10 @@ class Aloha extends React.Component {
     }
 
     render() {
-        const whatSay = this.state.sayHello ? 'Hello' : 'Bye'; 
+        const whatSay = this.state.sayHello ? 'Hello' : 'Bye';
+        const {name, lastName} = this.props; 
 
-        return <h1 onClick={() => {this.sayBye()}}>{whatSay}, {this.props.name} from {this.props.country}!</h1>
+        return <h1 onClick={() => {this.sayBye()}}>{whatSay}, {name} {lastName}!</h1>
     }
 }
 
