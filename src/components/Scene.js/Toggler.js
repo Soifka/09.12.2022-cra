@@ -1,34 +1,35 @@
 import React from "react";
 
-class Toggler extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            on: true
-        }
+// Функциональный компонент
+function Toggler(props) {
+    
+    const handleClick = () => {
+        props.changeParentState();
     }
 
+    return (
+        <button onClick={() => {handleClick()}}>{props.buttonText}</button>
+    )
+}
+
+
+
+/* Классовый компонент
+class Toggler extends React.Component {
     handleClick() {
-        this.setState({
-            on: !this.state.on
-        })
         this.props.changeParentState();
     }
 
     render() {
-        console.log(this.props);
-        //console.log(this.props.textStr); // через props родительский элемент может передать информацию дочернему элементу
-
-        const isOn = this.state.on ? 'On' : 'Off';
-
         return (
             <>
-                <button onClick={() => {this.handleClick()}}>{isOn}</button>
-                <p>I know You see me now!</p>
+                <button onClick={() => {this.handleClick()}}>{this.props.buttonText}</button>
             </>
             
         )
     }
 }
+*/
+
 
 export default Toggler;
