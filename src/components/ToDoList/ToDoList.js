@@ -65,11 +65,8 @@ class ToDoList extends React.Component {
     };
   }
 
-  delTask(e) {
-    //console.dir(e);
-
+  delTask(id) {
     const { taskArray } = this.state;
-    const {target: {dataset: {id}}} = e;
     
     const newTaskArray = taskArray.filter(task => task.id != id);
     
@@ -81,7 +78,7 @@ class ToDoList extends React.Component {
   taskToList() {
     const { taskArray } = this.state;
 
-    return taskArray.map((task) => <li key={task.id}>{task.taskText}   <button data-id={task.id} onClick={(e) => {this.delTask(e)}}>delete</button></li>)
+    return taskArray.map((task) => <li key={task.id}>{task.taskText}   <button onClick={() => {this.delTask(task.id)}}>delete</button></li>)
   }
 
   render() {
