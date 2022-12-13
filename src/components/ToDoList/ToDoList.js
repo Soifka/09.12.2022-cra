@@ -53,7 +53,7 @@ class ToDoList extends React.Component {
         },
         {
           id: 4,
-          taskText: "do to walk",
+          taskText: "go to walk",
           isComplete: false
         },
         {
@@ -68,7 +68,7 @@ class ToDoList extends React.Component {
   delTask(id) {
     const { taskArray } = this.state;
     
-    const newTaskArray = taskArray.filter(task => task.id != id);
+    const newTaskArray = taskArray.filter(task => task.id !== id);
     
     this.setState({
         taskArray: newTaskArray
