@@ -30,6 +30,7 @@
 */
 
 import React from "react";
+import ToDoItem from "./ToDoItem";
 
 class ToDoList extends React.Component {
   constructor(props) {
@@ -65,24 +66,26 @@ class ToDoList extends React.Component {
     };
   }
 
-  delTask(id) {
+  delTask(taskIdToDel) {
     const { taskArray } = this.state;
     
-    const newTaskArray = taskArray.filter(task => task.id !== id);
+    const newTaskArray = taskArray.filter(task => task.id !== taskIdToDel);
     
     this.setState({
         taskArray: newTaskArray
     })
   }
 
-  taskToList() {
-    const { taskArray } = this.state;
-
-    return taskArray.map((task) => <li key={task.id}>{task.taskText}   <button onClick={() => {this.delTask(task.id)}}>delete</button></li>)
+  getIdToDel(taskIdToDel) {
+    this.delTask(taskIdToDel);
   }
-
+  
   render() {
-    return <ul>{this.taskToList()}</ul>;
+    return (
+      <ul>
+        <ToDoItem taskArray={this.state.taskArray} getIdToDel={(id) => this.getIdToDel(id)}/>
+      </ul>
+    )
   }
 }
 
