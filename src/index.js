@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/client';
 //import AlohaDashboard from './components/AlohaDashboard/AlohaDashboard';
 //import ToDoList from './components/ToDoList/ToDoList';
 //import Scene from './components/Scene.js/Scene';
-import CounterPage from './components/Counter/CounterPage';
+//import CounterPage from './components/Counter/CounterPage';
+import UserList from './components/UsersList/UserList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
       {/* <AlohaDashboard /> */}
       {/* <ToDoList /> */}
       {/* <Scene /> */}
-      <CounterPage />
+      {/* <CounterPage /> */}
+      <UserList />
   </>
 );
