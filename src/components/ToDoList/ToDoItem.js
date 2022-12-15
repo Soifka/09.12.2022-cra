@@ -23,13 +23,19 @@ function компонента для Айтема (лі з текстом + кн
 import React from "react";
 
 function ToDoItem(props) {
-    const taskArray = props.taskArray;
-    const clickHandler = (taskIdToDel) => {
-        props.getIdToDel(taskIdToDel);
+    const clickHandler = () => {
+        const {delCallback, key} =props;
+        delCallback(key);
     }
 
-    return taskArray.map((task) => <li key={task.id}>{task.taskText}   <button onClick={() => {clickHandler(task.id)}}>delete</button></li>)
-        
+const {key} = props;
+
+    return (
+        <li key={key}>
+            {props.text}
+            <button onClick={() => {clickHandler()}}>delete</button>
+        </li>
+    )
 }
 
 export default ToDoItem;

@@ -75,17 +75,17 @@ class ToDoList extends React.Component {
         taskArray: newTaskArray
     })
   }
-
-  getIdToDel(taskIdToDel) {
-    this.delTask(taskIdToDel);
-  }
+  
   
   render() {
-    return (
-      <ul>
-        <ToDoItem taskArray={this.state.taskArray} getIdToDel={(id) => this.getIdToDel(id)}/>
-      </ul>
-    )
+    const { taskArray } = this.state;
+    
+    return taskArray.map((task) => 
+    <ToDoItem 
+    key={task.id} 
+    text={task.taskText} 
+    delCallback={() => {this.delTask(task.id)}} 
+    />)
   }
 }
 
