@@ -8,7 +8,6 @@ class SignInForm extends React.Component {
             email: '',
             password: '',
             isEmailValid: true,
-            isPasswordValid: true
         }
     }
     
@@ -38,7 +37,7 @@ class SignInForm extends React.Component {
 
                 <label className='flex-column'>
                     Your password:
-                    <input className={isEmailValid ? '' : 'invalid'} onChange={this.universalChangeHandler} name='password' type='password' value={password} />
+                    <input onChange={this.universalChangeHandler} name='password' type='password' value={password} />
                 </label>
 
                 <button type='submit'>Submit form</button>
