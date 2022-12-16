@@ -6,38 +6,39 @@ class SignInForm extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            isEmailValid: true,
+            isPasswordValid: true
         }
     }
     
     submitHandler = (event) => {
         event.preventDefault();
+        if(!this.state.email.includes('@')) {
+            this.setState({
+                isEmailValid: false
+            })
+        }
     }
-
-    changeEmailHandler = ({target: {value}}) => {
+    
+    universalChangeHandler = ({target: {value, name}}) => {
         this.setState({
-            email: value
-        })
-    }
-
-    changePassHandler = ({target: {value}}) => {
-        this.setState({
-            password: value
+            [name]: value
         })
     }
 
     render() {
-        const { email, password } = this.state;
+        const { email, password, isEmailValid } = this.state;
         return (
             <form className="form-wrapper flex-column" onSubmit={this.submitHandler}>
                 <label className='flex-column'>
                     Your email:
-                    <input onChange={this.changeEmailHandler} name='email' type='text' placeholder='test@gmail.com' value={email} />
+                    <input className={isEmailValid ? '' : 'invalid'} onChange={this.universalChangeHandler} name='email' type='text' placeholder='test@gmail.com' value={email} />
                 </label>
 
                 <label className='flex-column'>
                     Your password:
-                    <input onChange={this.changePassHandler} name='password' type='password' value={password} />
+                    <input className={isEmailValid ? '' : 'invalid'} onChange={this.universalChangeHandler} name='password' type='password' value={password} />
                 </label>
 
                 <button type='submit'>Submit form</button>
