@@ -31,12 +31,13 @@
 
 import React from "react";
 import ToDoItem from "./ToDoItem";
+import ToDoForm from "./ToDoForm";
 
 class ToDoList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      taskArray: [
+    
+    const taskArray = [
         {
           id: 1,
           taskText: "go to party",
@@ -62,7 +63,10 @@ class ToDoList extends React.Component {
           taskText: "learn React",
           isComplete: false
         },
-      ],
+      ]
+    
+    this.state = {
+      taskArray: taskArray
     };
   }
 
@@ -77,7 +81,7 @@ class ToDoList extends React.Component {
   }
   
   
-  render() {
+  renderLi() {
     const { taskArray } = this.state;
     
     return taskArray.map((task) => 
@@ -87,6 +91,33 @@ class ToDoList extends React.Component {
     delCallback={() => {this.delTask(task.id)}} 
     />)
   }
+
+  formHandler = (text) => {
+    const { taskArray } = this.state;
+    const newObj = {
+      id: Date.now(),
+      taskText: text
+    }
+
+    const newArr = [...taskArray, newObj]
+
+    this.setState({
+      taskArray: newArr
+    })
+  }
+
+  render() {
+    return (
+      <>
+        <ToDoForm sendData={this.formHandler} />
+        <ul>
+          {this.renderLi()}
+        </ul>
+      </>
+    )
+  }
+
 }
+
 
 export default ToDoList;
