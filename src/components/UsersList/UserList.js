@@ -8,7 +8,9 @@ class UserList extends React.Component {
         super(props);
 
         this.state = {
-            users: []
+            users: [],
+            filteredUsers: [],
+            searchValue: ''
         }
     }
 
@@ -21,9 +23,34 @@ class UserList extends React.Component {
         });
     }
 
+    handleSearch = (event) => {
+        if(event.target.value === '') {
+            this.setState({
+                searchValue: '',
+                filteredUsers: []
+            })
+            return;
+        }
+
+        this.setState({
+            searchValue: event.target.value
+        })
+        
+        const searchValueLowerCase = this.state.searchValue.toLowerCase();
+        const filteredUsers = this.state.users.filter((user) => {
+            return user.name.last.toLowerCase().includes(searchValueLowerCase, 0)
+        })
+
+        console.log('filtered!!!', filteredUsers);
+
+        this.setState({
+            filteredUsers   // это то же самое, что и написать   filteredUsers: filteredUsers
+        })
+    }
+
     renderUsers = () => {
-        const { users } = this.state;
-        return users.map((user) => <UserCard user={user} />)
+        const { users, filteredUsers } = this.state;
+        return filteredUsers.length > 0 ? filteredUsers.map((user) => <UserCard user={user} />) : users.map((user) => <UserCard user={user} />)
     }
 
     render() {
@@ -31,6 +58,14 @@ class UserList extends React.Component {
         return (
             <>
                 <h1>USERS</h1>
+
+                <input 
+                type='text' 
+                autoComplete="off" 
+                placeholder="Поиск юзера по фамилии"
+                onChange={this.handleSearch}
+                />
+
                 <section className="card-container">
                     {users.length ? this.renderUsers() : <h2>Users haven't loaded yet</h2>}
                 </section>
