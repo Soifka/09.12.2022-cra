@@ -25,7 +25,7 @@ class SignInForm extends React.Component {
             [name]: value
         })
     }
-
+    
     render() {
         const { email, password, isEmailValid } = this.state;
         return (

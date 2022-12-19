@@ -1,0 +1,13 @@
+.wrapper {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper form {
+    margin: 5px 0;
+}
+
+button {
+    width: 60px;
+}
