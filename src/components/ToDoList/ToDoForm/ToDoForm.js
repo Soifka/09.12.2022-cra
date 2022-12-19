@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import styles from './ToDoFormStyle.module.css';
+import cx from 'classnames';
 
 class ToDoForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             // необходимо поле, куда придет value из инпута
-            todo: ''
+            todo: '',
+            isInputValid: true
         }
     }
 
     // onChange обработчик --> передача значения инпута в стейт
     changeHandler = ({target: {value, name}}) => {
-        this.setState({
-            [name]: value
-        })
+        if(value.includes('*')) {
+            this.setState({
+                isInputValid: false
+            })
+        } else {
+            this.setState({
+                [name]: value,
+                isInputValid: true
+            })
+        }
+        
     }
 
     submitHandler = (event) => {
@@ -23,7 +33,13 @@ class ToDoForm extends Component {
     }
     
     render() {
-        const { todo } = this.state
+        const { todo, isInputValid } = this.state;
+
+        const cNameString = cx({
+            [styles.input]: true,
+            [styles['invalid-input']]: !isInputValid
+        })
+
         return (
             <form onSubmit={this.submitHandler} className={styles.container}>
                 {/* 1. Должен быть инпут
@@ -34,6 +50,7 @@ class ToDoForm extends Component {
                 name="todo"
                 value={todo}
                 onChange={this.changeHandler}
+                className={cNameString}
                 />
                 <button type="submit">Add task</button>
             </form>

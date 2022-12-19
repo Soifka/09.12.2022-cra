@@ -1,4 +1,16 @@
 .container {
+    width: 500px;
     background-color: rgb(177, 219, 177);
     border: 3px dotted darkgreen;
+}
+
+.input {
+    height: 1.8em;
+    background-color: rgb(201, 201, 201);
+}
+
+.invalid-input {
+    border: 2px solid red;
+    background-color: yellow;
+    outline-style: none;
 }
