@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './ToDoFormStyle.module.css';
 
 class ToDoForm extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class ToDoForm extends Component {
     render() {
         const { todo } = this.state
         return (
-            <form onSubmit={this.submitHandler}>
+            <form onSubmit={this.submitHandler} className={styles.container}>
                 {/* 1. Должен быть инпут
                     2. input.value должно приходить к нам из стейта
                 */}

@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    border: 3px dotted darkred;
+    background-color: bisque;
+}
+
+.container li {
+    margin: 10px 0;
+}
