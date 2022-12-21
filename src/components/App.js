@@ -8,7 +8,8 @@
 //import UsersFilter from "./UsersFilter/UsersFilter";
 // import HelloParent from "./HelloForm/HelloParent";
 //import MyUsers from "./RegistrationForm/MyUsers";
-import List from "./List";
+//import List from "./List";
+import FlexContainer from "./FlexContainer/FlexContainer";
 
 function App() {
     return (
@@ -21,7 +22,8 @@ function App() {
       // <UsersFilter />
       // <HelloParent />
       // <MyUsers />
-      <List />
+      // <List />
+      <FlexContainer />
     )
 }
 
