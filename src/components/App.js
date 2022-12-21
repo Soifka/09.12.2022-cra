@@ -7,19 +7,21 @@
 //import SignInForm from "./SignInForm";
 //import UsersFilter from "./UsersFilter/UsersFilter";
 // import HelloParent from "./HelloForm/HelloParent";
-import MyUsers from "./RegistrationForm/MyUsers";
+//import MyUsers from "./RegistrationForm/MyUsers";
+import List from "./List";
 
 function App() {
     return (
-    //   <AlohaDashboard />
+      // <AlohaDashboard />
       // <ToDoList />
-    //   <Scene />
-    //   <CounterPage />
+      // <Scene />
+      // <CounterPage />
       // <UserList />
-        // <SignInForm />
-        // <UsersFilter />
+      // <SignInForm />
+      // <UsersFilter />
       // <HelloParent />
-      <MyUsers />
+      // <MyUsers />
+      <List />
     )
 }
 
