@@ -1,0 +1,74 @@
+// это переменные начинаются с $
+$main-color: blue; 
+$sm-size: 500px;
+$xl-size: 850px;
+
+// это шаблонный селектор (кусочек кода, который можно переиспользовать), начинается с %
+%flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+
+    &:hover {
+        background-color: blue;
+    }
+}
+
+// это миксин (как бы функция в css, часть кода, которую можно переиспользовать) 
+// объявление начинается с директивы @mixin
+@mixin flex($fd, $jc, $ai) {
+    display: flex;
+    flex-direction: $fd;
+    justify-content: $jc;
+    align-items: $ai;
+}
+
+.form {
+    @include flex(column, center, stretch); // использование миксина, начинается с директивы @include
+    border: 1px solid black;
+}
+
+.button {
+    @include flex(row, flex-start, center)
+}
+
+.container {
+    @extend %flex-column; // использование шаблонного селектора, начинается директивы с @extend
+    color: $main-color;
+    display: flex;
+    font-size: 16px;
+
+    // scss позволяет делать вложенность, как показано ниже
+    // например, это --> все img, которые внутри класса container
+    img {
+        width: 200px;
+        height: 300px;
+    }
+
+    // знак & означает родительский селектор
+    &:hover {
+        background-color: blue;
+    }
+
+    @media screen and (max-width: $xl-size) {
+        & {
+            color: grey;
+        }
+    }
+}
+
+.text {
+    @extend %flex-column;
+    color: $main-color;
+}
+
+.wrapper {
+    @extend %flex-column;
+}
+
+@media screen and (max-width: $sm-size) {
+    h1 {
+        color: green;
+    }
+}
