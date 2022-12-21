@@ -10,12 +10,24 @@ class UserList extends React.Component {
         this.state = {
             users: [],
             filteredUsers: [],
-            searchValue: ''
+            searchValue: '',
+            page: 1
         }
     }
 
     componentDidMount() {
-        getUsers().then((data) => {
+        this.loadUsers(this.state.page);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.page !== this.state.page) {
+            this.loadUsers(this.state.page);
+        }
+        console.log(this.state.page)
+    }
+
+    loadUsers = (page) => {
+        getUsers(page).then((data) => {
             const { results } = data;
             this.setState({
                 users: results
@@ -48,6 +60,18 @@ class UserList extends React.Component {
         })
     }
 
+    prevBtnHandler = () => {
+        this.setState({
+            page: this.state.page > 1 ? this.state.page - 1 : this.state.page
+        })
+    }
+
+    nextBtnHandler = () => {
+        this.setState({
+            page: this.state.page + 1
+        })
+    }
+
     renderUsers = () => {
         const { users, filteredUsers } = this.state;
         return filteredUsers.length > 0 ? filteredUsers.map((user) => <UserCard user={user} />) : users.map((user) => <UserCard user={user} />)
@@ -65,6 +89,8 @@ class UserList extends React.Component {
                 placeholder="Поиск юзера по фамилии"
                 onChange={this.handleSearch}
                 />
+                <button onClick={this.prevBtnHandler}>Previous page</button>
+                <button onClick={this.nextBtnHandler}>Next page</button>
 
                 <section className="card-container">
                     {users.length ? this.renderUsers() : <h2>Users haven't loaded yet</h2>}
