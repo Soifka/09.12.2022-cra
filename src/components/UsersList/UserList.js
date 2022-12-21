@@ -11,7 +11,9 @@ class UserList extends React.Component {
             users: [],
             filteredUsers: [],
             searchValue: '',
-            page: 1
+            page: 1,
+            isLoading: true,
+            isError: false
         }
     }
 
@@ -31,6 +33,16 @@ class UserList extends React.Component {
             const { results } = data;
             this.setState({
                 users: results
+            })
+        })
+        .catch((error) => {
+            this.setState({
+                isError: true
+            })
+        })
+        .finally(() => {
+            this.setState({
+                isLoading: false
             })
         });
     }
@@ -78,7 +90,7 @@ class UserList extends React.Component {
     }
 
     render() {
-        const { users } = this.state;
+        const { users, isError, isLoading } = this.state;
         return (
             <>
                 <h1>USERS</h1>
@@ -92,8 +104,10 @@ class UserList extends React.Component {
                 <button onClick={this.prevBtnHandler}>Previous page</button>
                 <button onClick={this.nextBtnHandler}>Next page</button>
 
+                {isError && <h2>Error!!!</h2>}
+                {isLoading && <h2>Users haven't loaded yet</h2>}
                 <section className="card-container">
-                    {users.length ? this.renderUsers() : <h2>Users haven't loaded yet</h2>}
+                    {users.length ? this.renderUsers() : null}
                 </section>
             </>
         )
