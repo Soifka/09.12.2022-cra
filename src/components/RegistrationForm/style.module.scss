@@ -1,0 +1,14 @@
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+    input {
+        margin-bottom: 5px;
+    }
+
+    button {
+        background-color: darkred;
+        color: bisque;
+    }
+}
