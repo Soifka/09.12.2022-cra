@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 class UserCard extends Component {
-    constructor(props) {
-        super(props);
         
-    }
-    
     render() {
         const {user: 
             {name: {first: firstName, last: lastName}, 
