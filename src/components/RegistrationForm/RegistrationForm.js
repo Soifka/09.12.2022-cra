@@ -17,6 +17,13 @@ class RegistrationForm extends Component {
         const { name, surname, age, email } = this.state;
 
         this.props.getUsersInfo(name, surname, age, email);
+
+        this.setState({
+            name: '',
+            surname: '',
+            age: '',
+            email: ''
+        })
     }
 
     changeHandler = ({target, target: {name, value}}) => {
@@ -38,7 +45,7 @@ class RegistrationForm extends Component {
                     <input type='text' placeholder='Your surname' name='surname' value={surname} onChange={this.changeHandler} />
                     <input type='text' placeholder='Your age' name='age' value={age} onChange={this.changeHandler} />
                     <input type='text' placeholder='Your email' name='email' value={email} onChange={this.changeHandler} />
-                    <button type='submit'>Register</button>
+                    <button type='submit'>Confirm registration</button>
                 </form>
             </div>
         );

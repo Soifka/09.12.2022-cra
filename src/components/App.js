@@ -7,7 +7,7 @@ import Scene from "./Scene/Scene";
 //import SignInForm from "./SignInForm";
 //import UsersFilter from "./UsersFilter/UsersFilter";
 //import HelloParent from "./HelloForm/HelloParent";
-//import MyUsers from "./RegistrationForm/MyUsers";
+import MyUsers from "./RegistrationForm/MyUsers";
 //import List from "./List";
 //import FlexContainer from "./FlexContainer/FlexContainer";
 
@@ -30,6 +30,9 @@ function App() {
           <li>
             <Link to={"scene"}>Go to Scene</Link>
           </li>
+          <li>
+            <Link to={"registrationform"}>Go to Registration form</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
@@ -38,6 +41,7 @@ function App() {
         <Route path="/users" element={<UserList />} />
         <Route path="/counter" element={<CounterPage />} />
         <Route path="/scene" element={<Scene />} />
+        <Route path="/registrationform" element={<MyUsers />} />
 
         <Route path="/*" element={<NotFound />} />
       </Routes>
