@@ -12,7 +12,7 @@ class ToDoForm extends Component {
         }
     }
 
-    // onChange обработчик --> передача значения инпута в стейт
+    // onChange обработчик --> передача значения инпута (текста задачи) в стейт
     changeHandler = ({target: {value, name}}) => {
         if(value.includes('*')) {
             this.setState({
