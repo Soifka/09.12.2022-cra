@@ -1,0 +1,27 @@
+[
+    {
+        "brand": "TV Brand1",
+        "model": "11",
+        "price": "1000$"
+    },
+    {
+        "brand": "TV Brand2",
+        "model": "22",
+        "price": "500$"
+    },
+    {
+        "brand": "TV Brand3",
+        "model": "33",
+        "price": "1100$"
+    },
+    {
+        "brand": "TV Brand4",
+        "model": "44",
+        "price": "1500$"
+    },
+    {
+        "brand": "TV Brand5",
+        "model": "55",
+        "price": "1000$"
+    }
+]
