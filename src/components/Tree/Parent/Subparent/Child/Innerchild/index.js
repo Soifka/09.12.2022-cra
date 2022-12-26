@@ -5,16 +5,19 @@ const Innerchild = () => {
     return (
         <MyContext.Consumer>
             {
-                (value) => {
+                ({user, logOut}) => {
                     return (
-                        <p>{JSON.stringify(value)}</p>
+                        <>
+                            <div style={{border: '3px solid black', padding:'25px'}}>
+                                <p>Innerchild</p>
+                                <p>{JSON.stringify(user)}</p>
+                                <button onClick={logOut}>Logout</button>
+                            </div>
+                        </>
                     )
                 }
             }
         </MyContext.Consumer>
-        // <div>
-        //     Innerchild
-        // </div>
     );
 }
 

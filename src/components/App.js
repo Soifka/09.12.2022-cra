@@ -30,13 +30,22 @@ class App extends Component {
       }
     }
   }
+
+  logOut = () => {
+    this.setState({
+      user: {}
+    })
+  }
   
   render() {
     console.log(MyContext)
     return (
       <div>
         App
-        <MyContext.Provider value={this.state.user}>
+        <MyContext.Provider value={{
+          user: this.state.user,
+          logOut: this.logOut
+        }}>
           <Tree />
         </MyContext.Provider>
       </div>
