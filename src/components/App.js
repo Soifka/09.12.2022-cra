@@ -12,9 +12,40 @@
 //import FlexContainer from "./FlexContainer/FlexContainer";
 
 //import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import DataProvider from "./DataProvider";
+//import DataProvider from "./DataProvider";
+
+import React, { Component } from 'react';
+import Tree from './Tree';
+import { MyContext } from '../contexts/userContext';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: {
+        firstName: 'Ivan',
+        lastName: 'Ivanov',
+        email: 'ivan.ivanov@MediaList.com',
+        avatar: 'https://robohash.org/Ivanov Ivan'
+      }
+    }
+  }
+  
+  render() {
+    console.log(MyContext)
+    return (
+      <div>
+        App
+        <MyContext.Provider value={this.state.user}>
+          <Tree />
+        </MyContext.Provider>
+      </div>
+    );
+  }
+}
 
 
+/*
 function App() {
   return (
   <>
@@ -70,5 +101,6 @@ function App() {
     // <FlexContainer />
   );
 }
+*/
 
 export default App;
