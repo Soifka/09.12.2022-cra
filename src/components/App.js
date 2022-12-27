@@ -16,7 +16,11 @@
 
 import React, { Component } from 'react';
 import Tree from './Tree';
-import { MyContext } from '../contexts/userContext';
+import { UserContext } from '../contexts/userContext';
+import { ThemeContext } from '../contexts/themeContext';
+import CONSTANTS from '../constants';
+const { THEMES } = CONSTANTS;
+
 
 class App extends Component {
   constructor(props) {
@@ -27,8 +31,15 @@ class App extends Component {
         lastName: 'Ivanov',
         email: 'ivan.ivanov@MediaList.com',
         avatar: 'https://robohash.org/Ivanov Ivan'
-      }
+      },
+      theme: THEMES.LIGHT
     }
+  }
+
+  setTheme = (theme) => {
+    this.setState({
+      theme
+    })
   }
 
   logOut = () => {
@@ -38,16 +49,18 @@ class App extends Component {
   }
   
   render() {
-    console.log(MyContext)
+    const { theme } = this.state;
     return (
       <div>
         App
-        <MyContext.Provider value={{
-          user: this.state.user,
-          logOut: this.logOut
-        }}>
-          <Tree />
-        </MyContext.Provider>
+        <ThemeContext.Provider value={[theme, this.setTheme]}>
+          <UserContext.Provider value={{
+            user: this.state.user,
+            logOut: this.logOut
+            }}>
+            <Tree />
+          </UserContext.Provider>
+        </ThemeContext.Provider>
       </div>
     );
   }
