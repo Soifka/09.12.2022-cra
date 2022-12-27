@@ -1,11 +1,11 @@
 import React from 'react';
-import Innerchild from './Innerchild';
+import InnerchildWithUserContext from './Innerchild';
 
 const Child = () => {
     return (
         <div style={{border: '3px solid black', padding:'25px'}}>
             Child
-            <Innerchild />
+            <InnerchildWithUserContext />
         </div>
     );
 }

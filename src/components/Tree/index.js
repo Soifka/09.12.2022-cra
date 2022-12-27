@@ -1,34 +1,26 @@
-import React from 'react';
-import Parent from './Parent';
-import { ThemeContext } from '../../contexts/themeContext';
-import style from './Tree.module.scss';
-import cx from 'classnames';
-import CONSTANTS from '../../constants';
+import React from "react";
+import Parent from "./Parent";
+import { withTheme } from "../../HOC";
+import style from "./Tree.module.scss";
+import cx from "classnames";
+import CONSTANTS from "../../constants";
 const { THEMES } = CONSTANTS;
 
+const Tree = (props) => {
+  const clNames = cx(style.container, {
+    [style.lightTheme]: props.theme === THEMES.LIGHT,
+    [style.darkTheme]: props.theme === THEMES.DARK,
+  });
 
-const Tree = () => {
-    return (
+  return (
+    <div className={clNames}>
+      Tree
+      <Parent />
+    </div>
+  );
+};
 
-        <ThemeContext.Consumer>
-            {
-                ([theme, setTheme]) => {
 
-                    const clNames = cx(style.container, {
-                        [style.lightTheme]: theme === THEMES.LIGHT,
-                        [style.darkTheme]: theme === THEMES.DARK
-                    });
+const TreeWithTheme = withTheme(Tree);
 
-                    return (
-                        <div className={clNames}>
-                            Tree
-                            <Parent />
-                        </div>
-                    )
-                }
-            }
-        </ThemeContext.Consumer>
-    );
-}
-
-export default Tree;
+export default TreeWithTheme;

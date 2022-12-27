@@ -1,24 +1,19 @@
 import React from 'react';
-import { UserContext } from '../../../../../../contexts/userContext';
+import { withUser } from '../../../../../../HOC';
 
-const Innerchild = () => {
+const Innerchild = (props) => {
     return (
-        <UserContext.Consumer>
-            {
-                ({user, logOut}) => {
-                    return (
-                        <>
-                            <div style={{border: '3px solid black', padding:'25px'}}>
-                                <p>Innerchild</p>
-                                <p>{JSON.stringify(user)}</p>
-                                <button onClick={logOut}>Logout</button>
-                            </div>
-                        </>
-                    )
-                }
-            }
-        </UserContext.Consumer>
-    );
+        <div style={{border: '3px solid black', padding:'25px'}}>
+            <p>Innerchild</p>
+            <p>{JSON.stringify(props.user)}</p>
+            <button onClick={props.logOut}>Logout</button>
+        </div>        
+    )       
 }
 
-export default Innerchild;
+const InnerchildWithUserContext = (props) => {
+    const InnerchildWithUserContext = withUser(Innerchild);
+    return <InnerchildWithUserContext />
+}
+
+export default InnerchildWithUserContext;
