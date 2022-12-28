@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Toggler from "./Toggler";
 import "./style.css";
 
 
+const Scene = () => {
+    const [state, setState] = useState(true);
+
+    const toggleScene = () => {
+        setState(!state);
+    }
+    
+    return (
+        <div className={state ? "scene-on" : "scene-off"}>
+            <Toggler buttonText={state ? 'On' : 'Off'} changeParentState={() => {toggleScene()}} />
+        </div>
+    );
+}
+
+export default Scene;
+
+
+/*
 class Scene extends React.Component {
     //textStr = 'text from Scene component';
 
@@ -33,7 +51,9 @@ class Scene extends React.Component {
     }
 }
 
+
 export default Scene;
+*/
 
 /*
 Parent --> Child --- props
