@@ -30,6 +30,9 @@ const Subparent = (props) => {
 //     )
 // }
 
+
+// Контексты через HOCs:
+
 const SubparentWithContext = (props) => {
     const SubparentThemed = withTheme(Subparent);
     const SubparentWithContext = withUser(SubparentThemed);
@@ -37,5 +40,18 @@ const SubparentWithContext = (props) => {
         <SubparentWithContext />
     )
 }
+
+/*
+Решение, как у ментора:
+
+const SubparentThemed = withTheme(Subparent);
+
+const SubparentWithContext = withUser(SubparentThemed);
+
+--- ИЛИ совсем сокращенный вариант --->
+
+export default withUser(withTheme(Subparent));
+
+*/
 
 export default SubparentWithContext;
