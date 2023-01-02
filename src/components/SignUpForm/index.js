@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './style.module.scss'
 import { SCHEMA } from '../../schemas';
+import { Formik, Form, Field } from 'formik';
 
 // isValid (работает асинхронно, возвращает promise)
 // isValidSync (работает синхронно, возвращает true/false)
@@ -13,46 +14,28 @@ const initialState = {
     pass: ''
 }
 
-class SignUpForm extends Component {
-constructor(props) {
-    super(props);
-    this.state = {
-        ...initialState,
-        isError: null
+const SignUpForm = (props) => {
+    const handleSubmitToFormik = (values, actions) => {
+        actions.resetForm();
     }
-}
-
-    changeHandler = ({target: {name, value}}) => {
-        this.setState({
-            [name]: value
-        })
-    }
-
-    submitHandler = (event) => {
-        event.preventDefault();
-        try {
-            SCHEMA.validateSync(this.state);
-        } catch (error) {
-            this.setState({
-                isError: error
-            })
-        }
-    }
-
-    render() {
-        const { name, surname, email, pass, isError } = this.state;
-
-        return (
-            <form className={styles.formStyle} onSubmit={this.submitHandler}>
-                <input type='text' placeholder='Enter your name' name='name' value={name} onChange={this.changeHandler} />
-                <input type='text' placeholder='Enter your surname' name='surname' value={surname} onChange={this.changeHandler} />
-                <input type="text" placeholder='Your email' name='email' value={email} onChange={this.changeHandler}/>
-                <input type="text" placeholder='Your password' name='pass' value={pass} onChange={this.changeHandler}/>
-                <button type='submit'>Submit</button>
-                {isError && <p className={styles.errorMessage}>{isError.message}</p>}
-            </form>
-        );
-    }
+    
+    return (
+        <Formik initialValues={initialState} onSubmit={handleSubmitToFormik}>
+            {
+                (formikProps) => {
+                    return (
+                        <Form>
+                            <Field name='name' placeholder='Your name' />
+                            <Field name='surname' placeholder='Your surname' />
+                            <Field name='email' placeholder='Your email' />
+                            <Field name='pass' placeholder='Your password' />
+                            <input type='submit' value='submit' />
+                        </Form>
+                    );
+                }
+            }
+        </Formik>
+    );
 }
 
 export default SignUpForm;
