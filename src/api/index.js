@@ -1,5 +1,5 @@
-export const getUsers = (page) => {
-    const url = `https://randomuser.me/api/?results=10&seeds=FM&page=${page}`; // дописать ссылку ...results... какое количество юзеров брать
+export const getUsers = (count, page) => {
+    const url = `https://randomuser.me/api/?results=${count}&seeds=FM&page=${page}`; // дописать ссылку ...results... какое количество юзеров брать
     return fetch(url)
     .then((response) => response.json())
 }

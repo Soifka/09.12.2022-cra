@@ -12,6 +12,7 @@ class UserList extends React.Component {
             filteredUsers: [],
             searchValue: '',
             page: 1,
+            count: 50,
             isLoading: true,
             isError: false
         }
@@ -28,8 +29,8 @@ class UserList extends React.Component {
         console.log(this.state.page)
     }
 
-    loadUsers = (page) => {
-        getUsers(page).then((data) => {
+    loadUsers = (count, page) => {
+        getUsers(count, page).then((data) => {
             const { results } = data;
             this.setState({
                 users: results

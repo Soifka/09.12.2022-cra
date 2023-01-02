@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import MouseTracker from './MouseTracker';
+import NewUserLoader from './UsersList/NewUserLoader';
 
 
 class App extends Component {
   
   render() {
     return (
-      <MouseTracker />
+      <NewUserLoader />
     );
   }
 }
