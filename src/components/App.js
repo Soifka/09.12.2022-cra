@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Counter from './Counter/Counter';
-//import CounterPage from './Counter/CounterPage';
+import Clicker from './SandboxComponent';
 
 
 class App extends Component {
@@ -8,8 +7,7 @@ class App extends Component {
   render() {
     return (
       <>
-        {/* <CounterPage /> */}
-        <Counter  />
+        <Clicker />
       </>
     );
   }
