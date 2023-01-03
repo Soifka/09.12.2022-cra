@@ -1,21 +1,30 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Child from './Child';
-import { withTheme } from '../../../../HOC';
-import { withUser } from '../../../../HOC';
+import { UserContext } from '../../../../contexts/userContext';
+import { ThemeContext } from '../../../../contexts/themeContext';
+// import { withTheme } from '../../../../HOC';
+// import { withUser } from '../../../../HOC';
 import CONSTANTS from '../../../../constants';
 const { THEMES } = CONSTANTS;
 
+
 const Subparent = (props) => {
-    const nextTheme = props.theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT; 
+    const {user} = useContext(UserContext);
+    const [theme, setTheme] = useContext(ThemeContext);
+     
+    const nextTheme = theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
+    
     return (
         <div style={{border: '3px solid black', padding:'25px'}}>
             Subparent
-            <p>{props.user.firstName}</p>
-            <button onClick={() => props.setTheme(nextTheme)}>Click to change theme</button>
+            <p>{user.firstName}</p>
+            <button onClick={() => setTheme(nextTheme)}>Click to change theme</button>
             <Child />
         </div>
     );
 }
+
+export default Subparent;
 
 // const SubparentWithTheme = (props) => {
 //     return (
@@ -33,6 +42,7 @@ const Subparent = (props) => {
 
 // Контексты через HOCs:
 
+/*
 const SubparentWithContext = (props) => {
     const SubparentThemed = withTheme(Subparent);
     const SubparentWithContext = withUser(SubparentThemed);
@@ -40,6 +50,7 @@ const SubparentWithContext = (props) => {
         <SubparentWithContext />
     )
 }
+*/
 
 /*
 Решение, как у ментора:
@@ -54,4 +65,4 @@ export default withUser(withTheme(Subparent));
 
 */
 
-export default SubparentWithContext;
+//export default SubparentWithContext;

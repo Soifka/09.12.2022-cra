@@ -30,7 +30,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: THEMES.DARK,
+      theme: THEMES.LIGHT,
       user: {
         firstName: 'John',
         lastName: 'Doe 23'
@@ -38,11 +38,23 @@ class App extends React.Component {
     }
   }
 
+  setTheme = (theme) => {
+    this.setState({
+      theme
+    })
+  }
+
+  // logOut = () => {
+  //   this.setState({
+  //     user: {}
+  //   })
+  // }
+
   render() {
     const {user, theme} = this.state;
     return (
       <UserContext.Provider value={{user}}>
-        <ThemeContext.Provider value={[theme, () => {}]}>
+        <ThemeContext.Provider value={[theme, this.setTheme]}>
           <Tree />
         </ThemeContext.Provider>
       </UserContext.Provider>
